@@ -1,0 +1,12 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: api-alpha
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment  
+    name: api-alpha-rb-com
+  minReplicas: 4    
+  maxReplicas: 200
+  targetCPUUtilizationPercentage: 75
