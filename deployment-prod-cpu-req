@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-alpha-rb-com
+  labels:
+    app: api-alpha-rb-com
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: "50%"
+  selector:
+    matchLabels:
+      app: api-alpha-rb-com
+  template:
+    metadata:
+      labels:
+        app: api-alpha-rb-com
+        myapp: delete-me  # Label for deletion
+    spec:
+      terminationGracePeriodSeconds: 30
+      containers:
+      - name: api-alpha-rb-com
+        image: {{.Values.apialphaimage}}
+        envFrom:
+          - secretRef:
+              name: alpha-secrets-prod
+        rollingUpdate:
+          enabled: true
+          maxSurge: "100%"
+          maxUnavailable: "50%"
+        ports:
+        - name: api-alpha-port
+          containerPort: 80
+          # envFrom:
+          # - secretRef:
+          #     name: alphaasec
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "500m"
+          limits:
+            memory: "1Gi"
+            cpu: "1"
