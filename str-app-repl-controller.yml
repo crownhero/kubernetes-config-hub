@@ -2,19 +2,19 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
-  name: vproapp-controller
+  name: str-app-controller
 spec: 
   replicas: 2
   selector:
-     app: vproapp
+     app: str-app
   template:
     metadata:
       labels:
-        app: vproapp
+        app: str-app
     spec:
      containers:
       - name: appcontainer
-        image: imranvisualpath/freshtomapp:V7
+        image: str-path/freshtomapp:V7
         ports:
-          - name: vproapp-port
+          - name: str-app-port
             containerPort: 8080
