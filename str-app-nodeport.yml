@@ -6,8 +6,8 @@ spec:
   ports:
   - port: 8090
     nodePort: 30001
-    targetPort: vproapp-port
+    targetPort: str-app-port
     protocol: TCP
   selector: 
-       app: vproapp
+       app: str-app
   type: NodePort
