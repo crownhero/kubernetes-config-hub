@@ -5,8 +5,8 @@ metadata:
 spec:
   ports:
   - port: 80
-    targetPort: vproapp-port
+    targetPort: str-app-port
     protocol: TCP
   selector: 
-       app: vproapp
+       app: str-app
   type: LoadBalancer
