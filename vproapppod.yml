@@ -2,13 +2,13 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: vproapp
+  name: str-app
   labels:
-    app: vproapp
+    app: str-app
 spec:
   containers:
     - name: appcontainer
-      image: imranvisualpath/freshtomapp:V7
+      image: str-path/freshtomapp:V7
       ports:
-        - name: vproapp-port
+        - name: str-app-port
           containerPort: 8080
