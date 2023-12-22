@@ -14,7 +14,7 @@ spec:
     spec:
      containers:
       - name: appcontainer
-        image: str-path/freshtomapp:V7
+        image: str-path/freshtomapp:V8
         ports:
           - name: str-app-port
             containerPort: 8080
