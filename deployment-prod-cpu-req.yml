@@ -1,36 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-alpha-rb-com
+  name: str-api-com-app
   labels:
-    app: api-alpha-rb-com
+    app: str-api-com
 spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxUnavailable: "50%"
+      enabled: true
+      maxUnavailable: 0
+      maxSurge: "100%"
   selector:
     matchLabels:
-      app: api-alpha-rb-com
+      app: str-api-com
   template:
     metadata:
       labels:
-        app: api-alpha-rb-com
+        app: str-api-com
         myapp: delete-me  # Label for deletion
     spec:
       terminationGracePeriodSeconds: 30
       containers:
-      - name: api-alpha-rb-com
+      - name: str-api-com
         image: {{.Values.apialphaimage}}
         envFrom:
           - secretRef:
               name: alpha-secrets-prod
-        rollingUpdate:
-          enabled: true
-          maxSurge: "100%"
-          maxUnavailable: "50%"
+        # rollingUpdate:
+        #   enabled: true
+        #   maxSurge: "100%"
+        #   maxUnavailable: "50%"
         ports:
-        - name: api-alpha-port
+        - name: str-api-port
           containerPort: 80
           # envFrom:
           # - secretRef:
@@ -42,3 +44,9 @@ spec:
           limits:
             memory: "1Gi"
             cpu: "1"
+        readinessProbe:
+          httpGet:
+            path: /health-check.php  
+            port: 80
+          initialDelaySeconds: 5  # Delay before the first probe
+          periodSeconds: 1  # How often we want to perform the probe
