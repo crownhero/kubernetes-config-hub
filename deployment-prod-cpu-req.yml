@@ -46,7 +46,7 @@ spec:
             cpu: "1"
         readinessProbe:
           httpGet:
-            path: /health-check.php  
+            path: /health-check 
             port: 80
         lifecycle:
           preStop:
