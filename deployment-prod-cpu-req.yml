@@ -48,5 +48,9 @@ spec:
           httpGet:
             path: /health-check.php  
             port: 80
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/bin/bash", "-c", "sleep 20"]
           initialDelaySeconds: 5  # Delay before the first probe
           periodSeconds: 1  # How often we want to perform the probe
