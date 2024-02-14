@@ -23,10 +23,10 @@ spec:
       terminationGracePeriodSeconds: 30
       containers:
       - name: str-api-com
-        image: {{.Values.apialphaimage}}
+        image: {{.Values.strapiimage}}
         envFrom:
           - secretRef:
-              name: alpha-secrets-prod
+              name: str-com-prod
         # rollingUpdate:
         #   enabled: true
         #   maxSurge: "100%"
