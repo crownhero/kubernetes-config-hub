@@ -1,0 +1,10 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: api-proj-pdb
+spec:
+  maxUnavailable: 0 
+  #minAvailable: 7
+  selector:
+    matchLabels:
+      app: api-proj
